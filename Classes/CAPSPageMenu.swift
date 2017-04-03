@@ -948,6 +948,14 @@ open class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogn
                 // Resize menu items
                 var index : Int = 0
                 
+                let menuItemWidth : CGFloat
+                if useMenuLikeSegmentedControl {
+                    let marginSum = menuItemMargin * CGFloat(controllerArray.count + 1)
+                    menuItemWidth = (self.view.frame.width - marginSum) / CGFloat(controllerArray.count)
+                }else{
+                    menuItemWidth = self.menuItemWidth
+                }
+                
                 for item : MenuItemView in menuItems as [MenuItemView] {
                     item.frame = CGRect(x: self.view.frame.width / CGFloat(controllerArray.count) * CGFloat(index), y: 0.0, width: self.view.frame.width / CGFloat(controllerArray.count), height: menuHeight)
                     item.titleLabel!.frame = CGRect(x: 0.0, y: imageHeight, width: menuItemWidth, height: menuHeight - selectionIndicatorHeight - imageHeight)
